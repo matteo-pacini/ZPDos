@@ -40,10 +40,13 @@
             scaler=normal2x forced
 
             [dosbox]
-            machine=svga_s3
+            machine=svga_s3virge
             fastbioslogo=true
             startbanner=false
             memsize=16
+
+            [video]
+            vmemsize=4
 
             [cpu]
             core=normal
@@ -84,7 +87,6 @@
             dosbox-x -conf ${dosboxConf} \
               -c "IMGMOUNT C hdd.img" \
               -c "BOOT $TMPDIR/disk1.img $TMPDIR/disk2.img $TMPDIR/disk3.img"
-            EOF
           '';
           installCdromDrivers = pkgs.writeScriptBin "installCdromDrivers" ''
             #!${pkgs.stdenv.shell}
@@ -106,7 +108,6 @@
               -c "IMGMOUNT C hdd.img" \
               -c "IMGMOUNT A $TMPDIR/cdrom.img -t floppy" \
               -c "BOOT C:"
-            EOF
           '';
           runDos = pkgs.writeScriptBin "runDos" ''
             #!${pkgs.stdenv.shell}
@@ -120,8 +121,8 @@
             dosbox-x -conf ${dosboxConf} \
               -c "IMGMOUNT C hdd.img" \
               -c "IMGMOUNT D ${tools}/tools.iso -t cdrom" \
+              -c "MOUNT G $PWD" \
               -c "BOOT C:"
-            EOF
           '';
         in
         {

@@ -20,6 +20,10 @@ let
     url = "https://openwatcom.org/ftp/manuals/1.5/clib.pdf";
     hash = "sha256-iXLSD3Fmn34uHldArVC+fr3kMfsM3ueYd5uPBDOiaXI=";
   };
+  advancedDosProgramming = fetchurl {
+    url = "https://archive.org/download/bitsavers_microsoftmedMSDOSProgramming2nd1988_124480087/Duncan_-_Advanced_MSDOS_Programming_2nd_1988.pdf";
+    hash = "sha256-Cp/dicW7sNih84I++5GgWT3Pv/jWCjnEeZMJ678/B50=";
+  };
 in
 stdenvNoCC.mkDerivation {
   pname = "zpdos-manuals";
@@ -34,6 +38,7 @@ stdenvNoCC.mkDerivation {
     cp ${tv2Manual} "$out/Turbo Vision 2.0.pdf"
     cp ${watcomProgrammerGuide} "$out/Open Watcom Programmer's Guide.pdf"
     cp ${watcomClibGuide} "$out/Open Watcom C Library Reference.pdf"
+    cp ${advancedDosProgramming} "$out/Advanced MSDOS Programming, 2nd Edtion, 1988.pdf"
     runHook postInstall
   '';
 

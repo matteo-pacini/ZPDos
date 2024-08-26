@@ -3,7 +3,6 @@
   lib,
   fetchurl,
   fetchtorrent,
-  fetchzip,
   cdrkit,
   unzip,
   p7zip,
@@ -15,11 +14,6 @@ let
   openWatcom_1_9 = fetchurl {
     url = "https://github.com/open-watcom/open-watcom-1.9/releases/download/ow1.9/open-watcom-c-dos-1.9.exe";
     hash = "sha256-pIXumz0FlCxMSqn2hrB0zq9nZmXt29b6k/1ATO0Axoc=";
-  };
-  mouseDrivers = fetchzip {
-    url = "http://cutemouse.sourceforge.net/download/cutemouse21b4.zip";
-    hash = "sha256-gUKk08fud6rMuteVoHRRjT5rBWeJbWE9nRQLqeZRaRQ=";
-    stripRoot = false;
   };
   monkeyIsland = fetchtorrent {
     url = "https://archive.org/download/monkey_dos/monkey_dos_archive.torrent";
@@ -84,8 +78,6 @@ stdenvNoCC.mkDerivation {
 
     mkdir -p $TMPDIR/TP70
     cp -r ${turbo-pascal}/TP70 $TMPDIR/TP70/
-
-    cp ${mouseDrivers}/bin/ctmouse.exe $TMPDIR/CTMOUSE.EXE
 
     unzip ${monkeyIsland}/MONKEY.zip -d $TMPDIR/MONKEY
     unzip ${doom2}/Doom2.zip -d $TMPDIR/DOOM2

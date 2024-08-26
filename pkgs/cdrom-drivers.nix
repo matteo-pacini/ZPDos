@@ -6,7 +6,7 @@
   dosfstools,
 }:
 stdenvNoCC.mkDerivation {
-  pname = "vide-cdd";
+  pname = "zpdos-cdrom-drivers";
   version = "1.0";
 
   src = fetchurl {

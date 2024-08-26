@@ -10,7 +10,7 @@ stdenvNoCC.mkDerivation {
   version = "1.0";
 
   src = fetchurl {
-    url = "https://www.dosdays.co.uk/media/cdrom/apicd214.zip";
+    url = "https://web.archive.org/web/20240206023623/https://www.dosdays.co.uk/media/cdrom/apicd214.zip";
     hash = "sha256-0CNAIVpSNC3R7M1yQ4EzHkrvtEie5/vufXUWyy4I4g8=";
   };
 

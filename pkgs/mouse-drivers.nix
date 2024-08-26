@@ -9,8 +9,9 @@ stdenvNoCC.mkDerivation {
   version = "1.0";
 
   src = fetchzip {
-    url = "http://cutemouse.sourceforge.net/download/cutemouse21b4.zip";
+    url = "https://web.archive.org/web/20221116175818/https://sta.c64.org/dosprg/cutemouse21b4.zip";
     hash = "sha256-gUKk08fud6rMuteVoHRRjT5rBWeJbWE9nRQLqeZRaRQ=";
+    stripRoot = false;
   };
 
   nativeBuildInputs = [

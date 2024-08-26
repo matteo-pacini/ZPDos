@@ -12,7 +12,7 @@
 }:
 let
   openWatcom_1_9 = fetchurl {
-    url = "https://github.com/open-watcom/open-watcom-1.9/releases/download/ow1.9/open-watcom-c-dos-1.9.exe";
+    url = "https://web.archive.org/web/20240826215930/https://github.com/open-watcom/open-watcom-1.9/releases/download/ow1.9/open-watcom-c-dos-1.9.exe";
     hash = "sha256-pIXumz0FlCxMSqn2hrB0zq9nZmXt29b6k/1ATO0Axoc=";
   };
   monkeyIsland = fetchtorrent {
@@ -28,15 +28,15 @@ let
     hash = "sha256-uBtECw7eezkdGOvPB3I06UfmKD+avkXGDWCIg5SmtAY=";
   };
   dosBench = fetchurl {
-    url = "https://www.philscomputerlab.com/uploads/3/7/2/3/37231621/dosbench_v1.6.zip";
+    url = "https://web.archive.org/web/20240826220138/https://www.philscomputerlab.com/uploads/3/7/2/3/37231621/dosbench_v1.6.zip";
     hash = "sha256-TZk1YBHUIMnzfz8vcn4sgg+jqjh4uG/cxl2wlpn1R6Y=";
   };
   mpxPlay = fetchurl {
-    url = "https://altushost-swe.dl.sourceforge.net/project/mpxplay/Mpxplay/Mpxplay%20v1.67/MPXP167G.ZIP?viasf=1";
+    url = "https://web.archive.org/web/20240826220249/https://altushost-swe.dl.sourceforge.net/project/mpxplay/Mpxplay/Mpxplay%20v1.67/MPXP167G.ZIP?viasf=1";
     hash = "sha256-rZCmxfzCIKFH+vahl+XdWwCkgvEEWRa4lzaPHkBS5dw=";
   };
   mxPlayExtender = fetchurl {
-    url = "https://mpxplay.sourceforge.net/DOS4G261.ZIP";
+    url = "https://web.archive.org/web/20240826220343/https://mpxplay.sourceforge.net/DOS4G261.ZIP";
     hash = "sha256-RuDgtYYsmzIFYDQ4zSYp/iZDWK9uJaVP9umwyrR5ra0=";
   };
   eldenRingFlac = fetchurl {
@@ -44,16 +44,16 @@ let
     hash = "sha256-4seHTPQNsvIKdb1jG1rKo+Cxb+xLeQyExo7BGouyncE=";
   };
   princeOfPersia = fetchurl {
-    url = "https://www.popuw.com/files/disks/PoP_v1.3_3.5_Disk.zip";
+    url = "https://web.archive.org/web/20240826220520/https://www.popuw.com/files/disks/PoP_v1.3_3.5_Disk.zip";
     hash = "sha256-2tx3WSCfM3FEnKejesocmLLpd+ogOR1NyV02iws4GOs=";
   };
   dosMid = fetchurl {
-    url = "https://dosmid.sourceforge.net/dosmid98.zip";
+    url = "https://web.archive.org/web/20240826220623/https://dosmid.sourceforge.net/dosmid98.zip";
     hash = "sha256-syAIgQPOKAJekw2SLND4TiDnX7ro99qffOQtWkjOFyE=";
   };
-  erMidi = fetchurl {
-    url = "https://www.vgmusic.com/new-files/001_Elden_Ring_-_Main_Theme.mid";
-    hash = "sha256-hkxACKW8smAnVce0feve6kLG1uyRFECZRQzHpzdhe2s=";
+  ao2Midi = fetchurl {
+    url = "https://web.archive.org/web/20240826220900/https://vgmusic.com/music/computer/microsoft/windows/open.mid";
+    hash = "sha256-zfQrzekxwOnxVKR9Ain4q6CNMT0M09r2bW8/JEUD/bw=";
   };
 in
 stdenvNoCC.mkDerivation {
@@ -77,7 +77,7 @@ stdenvNoCC.mkDerivation {
     cp -r ${openWatcom_1_9} $TMPDIR/WATCOM.EXE
 
     mkdir -p $TMPDIR/TP70
-    cp -r ${turbo-pascal}/TP70 $TMPDIR/TP70/
+    cp -r ${turbo-pascal}/TP70 $TMPDIR/
 
     unzip ${monkeyIsland}/MONKEY.zip -d $TMPDIR/MONKEY
     unzip ${doom2}/Doom2.zip -d $TMPDIR/DOOM2
@@ -94,7 +94,7 @@ stdenvNoCC.mkDerivation {
     ffmpeg -i $TMPDIR/MPXPLAY/ER.FLAC -ar 22050 -c:a libvorbis -q:a 5 -map_metadata -1 $TMPDIR/MPXPLAY/ER22-Q5.OGG
 
     unzip ${dosMid} -d $TMPDIR/DOSMID
-    cp ${erMidi} $TMPDIR/DOSMID/er.midi
+    cp ${ao2Midi} $TMPDIR/DOSMID/aoe2.midi
 
     unzip ${princeOfPersia} -d $TMPDIR/POP
 

@@ -13,11 +13,11 @@ let
     hash = "sha256-YUpyVkdHs/aOt4SWJJxfqcDXWFioURUrTpM7VZ9lBlA=";
   };
   watcomProgrammerGuide = fetchurl {
-    url = "https://openwatcom.org/ftp/manuals/1.5/pguide.pdf";
+    url = "https://web.archive.org/web/20240826215721/https://openwatcom.org/ftp/manuals/1.5/pguide.pdf";
     hash = "sha256-7AcvJHQdqOmDKUpIHZZLJOZqi0w0bbwZm3yGfsjbH+w=";
   };
   watcomClibGuide = fetchurl {
-    url = "https://openwatcom.org/ftp/manuals/1.5/clib.pdf";
+    url = "https://web.archive.org/web/20240826215827/https://openwatcom.org/ftp/manuals/1.5/clib.pdf";
     hash = "sha256-iXLSD3Fmn34uHldArVC+fr3kMfsM3ueYd5uPBDOiaXI=";
   };
   advancedDosProgramming = fetchurl {

@@ -27,7 +27,7 @@ let
   };
   doom2 = fetchtorrent {
     url = "https://archive.org/download/Doom-2/Doom-2_archive.torrent";
-    hash = "sha256-+Erxmc5AlWRp6obm8WFyEry3N4F0PwjOjnnb13Om9aI=";
+    hash = "sha256-LQVomPMcXfryp1538NLukrBaK89bIowNtJzrEoejm/s=";
   };
   pcpaint = fetchtorrent {
     url = "https://archive.org/download/pcpaint31portableversion/pcpaint31portableversion_archive.torrent";
@@ -96,7 +96,6 @@ stdenvNoCC.mkDerivation {
     unzip ${dosBench} -d $TMPDIR/DOSBENCH
 
     unzip ${mpxPlay} -d $TMPDIR/MPXPLAY
-    mv "$TMPDIR/MPXPLAY/mpxplay.exe" $TMPDIR/MPXPLAY/MPXPLAY.EXE
     unzip ${mxPlayExtender} -d $TMPDIR/MPXPLAY
 
     cp ${eldenRingFlac} $TMPDIR/MPXPLAY/ER.FLAC 

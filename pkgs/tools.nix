@@ -7,6 +7,9 @@
   cdrkit,
   unzip,
   p7zip,
+  ffmpeg,
+
+  turbo-pascal,
 }:
 let
   openWatcom_1_9 = fetchurl {
@@ -42,9 +45,9 @@ let
     url = "https://mpxplay.sourceforge.net/DOS4G261.ZIP";
     hash = "sha256-RuDgtYYsmzIFYDQ4zSYp/iZDWK9uJaVP9umwyrR5ra0=";
   };
-  eldenRingMp3 = fetchurl {
-    url = "https://archive.org/download/shoi-miyazawa-yuka-kitamura-yoshimi-kudo-tai-tomisawa-elden-ring-original-game-soundtrack/1-01%20Elden%20Ring.mp3";
-    hash = "sha256-fAu7ZOBixSxJKEiQ4nYqF3sCa3n+Yxg5/p9YVMbG/yY=";
+  eldenRingFlac = fetchurl {
+    url = "https://archive.org/download/shoi-miyazawa-yuka-kitamura-yoshimi-kudo-tai-tomisawa-elden-ring-original-game-soundtrack/1-01%20Elden%20Ring.flac";
+    hash = "sha256-4seHTPQNsvIKdb1jG1rKo+Cxb+xLeQyExo7BGouyncE=";
   };
   ags = fetchurl {
     url = "http://www.doshaven.eu/wp-content/uploads/2018/01/ags_231.zip";
@@ -53,6 +56,14 @@ let
   princeOfPersia = fetchurl {
     url = "https://www.popuw.com/files/disks/PoP_v1.3_3.5_Disk.zip";
     hash = "sha256-2tx3WSCfM3FEnKejesocmLLpd+ogOR1NyV02iws4GOs=";
+  };
+  dosMid = fetchurl {
+    url = "https://dosmid.sourceforge.net/dosmid98.zip";
+    hash = "sha256-syAIgQPOKAJekw2SLND4TiDnX7ro99qffOQtWkjOFyE=";
+  };
+  erMidi = fetchurl {
+    url = "https://www.vgmusic.com/new-files/001_Elden_Ring_-_Main_Theme.mid";
+    hash = "sha256-hkxACKW8smAnVce0feve6kLG1uyRFECZRQzHpzdhe2s=";
   };
 in
 stdenvNoCC.mkDerivation {
@@ -63,6 +74,7 @@ stdenvNoCC.mkDerivation {
     cdrkit
     unzip
     p7zip
+    ffmpeg
   ];
 
   phases = [ "installPhase" ];
@@ -74,6 +86,9 @@ stdenvNoCC.mkDerivation {
 
     cp -r ${openWatcom_1_9} $TMPDIR/WATCOM.EXE
 
+    mkdir -p $TMPDIR/TP70
+    cp -r ${turbo-pascal}/TP70 $TMPDIR/TP70/
+
     cp ${mouseDrivers}/bin/ctmouse.exe $TMPDIR/CTMOUSE.EXE
     unzip ${monkeyIsland}/MONKEY.zip -d $TMPDIR/MONKEY
     unzip ${doom2}/Doom2.zip -d $TMPDIR/DOOM2
@@ -83,7 +98,14 @@ stdenvNoCC.mkDerivation {
     unzip ${mpxPlay} -d $TMPDIR/MPXPLAY
     mv "$TMPDIR/MPXPLAY/mpxplay.exe" $TMPDIR/MPXPLAY/MPXPLAY.EXE
     unzip ${mxPlayExtender} -d $TMPDIR/MPXPLAY
-    cp ${eldenRingMp3} $TMPDIR/MPXPLAY/ELDENRING.MP3
+
+    cp ${eldenRingFlac} $TMPDIR/MPXPLAY/ER.FLAC 
+    ffmpeg -i $TMPDIR/MPXPLAY/ER.FLAC -c:a mp3 -ar 44100 -b:a 192k -map_metadata -1 $TMPDIR/MPXPLAY/ER44-192k.MP3 
+    ffmpeg -i $TMPDIR/MPXPLAY/ER.FLAC -c:a mp3 -ar 22050 -b:a 192k -map_metadata -1 $TMPDIR/MPXPLAY/ER22-160k.MP3
+    ffmpeg -i $TMPDIR/MPXPLAY/ER.FLAC -ar 22050 -c:a libvorbis -q:a 5 -map_metadata -1 $TMPDIR/MPXPLAY/ER22-Q5.OGG
+
+    unzip ${dosMid} -d $TMPDIR/DOSMID
+    cp ${erMidi} $TMPDIR/DOSMID/er.midi
 
     unzip ${ags} -d $TMPDIR/AGS    
 

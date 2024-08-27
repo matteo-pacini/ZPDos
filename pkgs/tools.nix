@@ -76,6 +76,8 @@ stdenvNoCC.mkDerivation {
 
     cp -r ${openWatcom_1_9} $TMPDIR/WATCOM.EXE
 
+    cp -r ${../ctools} $TMPDIR/CTOOLS
+
     mkdir -p $TMPDIR/TP70
     cp -r ${turbo-pascal}/TP70 $TMPDIR/
 

@@ -24,6 +24,10 @@ let
     url = "https://archive.org/download/bitsavers_microsoftmedMSDOSProgramming2nd1988_124480087/Duncan_-_Advanced_MSDOS_Programming_2nd_1988.pdf";
     hash = "sha256-Cp/dicW7sNih84I++5GgWT3Pv/jWCjnEeZMJ678/B50=";
   };
+  artOfAssembly2 = fetchurl {
+    url = "https://web.archive.org/web/20240514224619/http://www.staroceans.org/kernel-and-driver/The.Art.of.Assembly.Language.2nd.Edition.pdf";
+    hash = "sha256-FOqXibqT2SsQU4POAav7fpUQvCSQTzbmzkPsOC5qAuk=";
+  };
 in
 stdenvNoCC.mkDerivation {
   pname = "zpdos-manuals";
@@ -39,6 +43,7 @@ stdenvNoCC.mkDerivation {
     cp ${watcomProgrammerGuide} "$out/Open Watcom Programmer's Guide.pdf"
     cp ${watcomClibGuide} "$out/Open Watcom C Library Reference.pdf"
     cp ${advancedDosProgramming} "$out/Advanced MSDOS Programming, 2nd Edtion, 1988.pdf"
+    cp ${artOfAssembly2} "$out/The Art of Assembly Language, 2nd Edition.pdf"
     runHook postInstall
   '';
 

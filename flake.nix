@@ -30,7 +30,8 @@
           mouseDrivers = pkgs.callPackage ./pkgs/mouse-drivers.nix { };
           manuals = pkgs.callPackage ./pkgs/manuals.nix { };
           turbo-pascal = pkgs.callPackage ./pkgs/turbo-pascal.nix { };
-          tools = pkgs.callPackage ./pkgs/tools.nix { inherit turbo-pascal; };
+          bwbasic = pkgs.callPackage ./pkgs/bwbasic.nix { };
+          tools = pkgs.callPackage ./pkgs/tools.nix { inherit turbo-pascal bwbasic; };
           _486dx2 = pkgs.writeScriptBin "486dx2" ''
             #!${pkgs.lib.getExe pkgs.bash}
 

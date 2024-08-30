@@ -9,6 +9,7 @@
   ffmpeg,
 
   turbo-pascal,
+  bwbasic,
 }:
 let
   openWatcom_1_9 = fetchurl {
@@ -80,6 +81,10 @@ stdenvNoCC.mkDerivation {
 
     mkdir -p $TMPDIR/TP70
     cp -r ${turbo-pascal}/TP70 $TMPDIR/
+
+    mkdir -p $TMPDIR/BWBASIC
+    cp -r ${bwbasic}/BWBASIC.EXE $TMPDIR/BWBASIC/BWBASIC.EXE
+    cp -r ${bwbasic}/CWSDPMI.EXE $TMPDIR/BWBASIC/CWSDPMI.EXE
 
     unzip ${monkeyIsland}/MONKEY.zip -d $TMPDIR/MONKEY
     unzip ${doom2}/Doom2.zip -d $TMPDIR/DOOM2

@@ -23,8 +23,12 @@
       ];
 
       perSystem =
-        { pkgs, system, ... }:
+        { system, ... }:
         let
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          };
           msdos = pkgs.callPackage ./pkgs/msdos.nix { };
           cdromDrivers = pkgs.callPackage ./pkgs/cdrom-drivers.nix { };
           mouseDrivers = pkgs.callPackage ./pkgs/mouse-drivers.nix { };
